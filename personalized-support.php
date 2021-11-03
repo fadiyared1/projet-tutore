@@ -29,9 +29,9 @@ function vector($atts, $content) {
 	<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
 	<datalist id="ticks1">
 	  <option value="1">pas assimilé</option>
-	  <option value="2">réussite ou compréhension fragile</option>
-	  <option value="3">bien compris mais besoin</option>
-	  <option value="4">complètement maitrisé</option>
+	  <option value="2">réussite</option>
+	  <option value="3">bien</option>
+	  <option value="4">complètement</option>
 	</datalist>
 </div>
   </fieldset>';
