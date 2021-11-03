@@ -28,10 +28,10 @@ function vector($atts, $content) {
 	<div class="__range __range-step">
 	<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
 	<datalist id="ticks1">
-	  <option value="1">pas assimilé</option>
-	  <option value="2">réussite</option>
-	  <option value="3">bien</option>
-	  <option value="4">complètement</option>
+	  <option value="1">1</option>
+	  <option value="2">2</option>
+	  <option value="3">3</option>
+	  <option value="4">4</option>
 	</datalist>
 </div>
   </fieldset>';
