@@ -74,7 +74,7 @@ function feedback_shortcode($atts, $content)
 
 	return
 		'<fieldset class="formSlider">
-			<legend class="applicationForm__text">' + $title + '</legend>
+			<legend class="applicationForm__text">qsd</legend>
 			<div class="__range __range-step">
 				<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
 				<datalist id="ticks1">
