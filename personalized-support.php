@@ -15,6 +15,28 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+add_action( 'admin_menu', 'personalized_support_menu' );
+function personalized_support_menu() {
+	add_menu_page( __( 'Plugin Personalized Support', 'personalized_support' ), 'Personalized Support', 'manage_options', 'personalized_support', 'personalized_support_menu_output' );
+}
+
+function personalized_support_menu_output() {
+	?>
+	<div class="wrap">
+		<h2><?php echo get_admin_page_title() ?></h2>
+
+		<form action="#" method="POST">
+			<?php
+			/*	settings_fields( 'option_group' );
+				do_settings_sections( 'simple_spoiler_page' );
+				submit_button();*/
+			?>
+		
+		</form>
+	</div>
+	<?php
+}
+
 function authentication_shortcode($atts, $content) {
 	if ( ! isset($atts['title']) ) {
 		$sp_name = __( 'Authentification', 'simple-spoiler' );
