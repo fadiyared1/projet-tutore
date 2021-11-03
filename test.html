@@ -1,22 +1,7 @@
-.spoiler-head {
-	padding: 10px;
-	cursor: pointer;
-}
-
-.folded:before {
-	content: "+";
-	margin-right: 5px;
-}
-
-.unfolded:before {
-	content: "–";
-	margin-right: 5px;
-}
-
-.spoiler-body {
-	padding: 10px;
-}
-.__range input
+<html>
+<head>
+    <style type="text/css">
+    .__range input
 {
   outline: none;
 	-webkit-appearance: none;
@@ -145,3 +130,60 @@
 .__range-step-popup{
   margin:40px 40px;
 }
+</style>
+</head>
+
+<body>
+    <fieldset class="formSlider">
+        <legend class="applicationForm__text">Feedback</legend>
+        <div class="__range __range-step">
+        <input value="3" type="range" max="4" min="1" step="1" list="ticks1">
+        <datalist id="ticks1">
+          <option value="1">pas assimilé</option>
+          <option value="2">réussite ou compréhension fragile</option>
+          <option value="3">bien compris mais besoin d'une revision</option>
+          <option value="4">complètement maitrisé</option>
+        </datalist>
+</div>
+      </fieldset>
+</body>
+<script>
+document.querySelectorAll(".__range-step").forEach(function(ctrl) {
+	var el = ctrl.querySelector('input');        
+	var output = ctrl.querySelector('output'); 
+	var newPoint, newPlace, offset;
+	el.oninput =function(){ 
+		// colorize step options
+		ctrl.querySelectorAll("option").forEach(function(opt) {
+			if(opt.value<=el.valueAsNumber)                
+				opt.style.backgroundColor = 'green';
+			else
+				opt.style.backgroundColor = '#aaa';
+		});           
+		// colorize before and after
+		var valPercent = (el.valueAsNumber  - parseInt(el.min)) / (parseInt(el.max) - parseInt(el.min));            
+		var style = 'background-image: -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop('+
+		valPercent+', green), color-stop('+
+		valPercent+', #aaa));';
+		el.style = style;
+
+		// Popup
+    if((' ' + ctrl.className + ' ').indexOf(' ' + '__range-step-popup' + ' ') > -1)
+    {
+			var selectedOpt=ctrl.querySelector('option[value="'+el.value+'"]');
+			output.innerText= selectedOpt.text;
+			output.style.left = "50%"; 
+			output.style.left = ((selectedOpt.offsetLeft + selectedOpt.offsetWidth/2) - output.offsetWidth/2) + 'px'; 
+    }           
+	};
+	el.oninput();    
+});
+
+window.onresize = function(){
+	document.querySelectorAll(".__range").forEach(function(ctrl) {
+		var el = ctrl.querySelector('input');    
+		el.oninput();    
+	});
+};
+</script>
+</html>

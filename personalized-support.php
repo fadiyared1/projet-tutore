@@ -15,48 +15,28 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_action( 'admin_menu', 'simple_spoiler_menu' );
-function simple_spoiler_menu() {
-	add_menu_page( __( 'Plugin Simple Spoiler', 'simple-spoiler' ), 'Simple Spoiler', 'manage_options', 'simple-spoiler', 'simple_spoiler_menu_output' );
-}
 
-function simple_spoiler_menu_output() {
-	?>
-	<div class="wrap">
-		<h2><?php echo get_admin_page_title() ?></h2>
 
-		<form action="options.php" method="POST">
-			<?php
-				settings_fields( 'option_group' );
-				do_settings_sections( 'simple_spoiler_page' );
-				submit_button();
-			?>
-		
-		</form>
-	</div>
-	<?php
-}
-
-function sanitize_callback( $options ) { 
-	foreach( $options as $name => & $val ) {
-		if( $name == 'input' )
-			$val = strip_tags( $val );
-	}
-	return $options;
-}
-
-function feedback_shortcode($atts, $content) {
+function vector($atts, $content) {
 	if ( ! isset($atts['title']) ) {
-		$sp_name = __( 'Spoiler', 'simple-spoiler' );
+		$sp_name = __( 'Feedback', 'simple-spoiler' );
 	} else {
 		$sp_name = $atts['title'];
 	}
-	return '<div class="spoiler-wrap">
-				<div class="spoiler-head folded">'.$sp_name.'</div>
-				<div class="spoiler-body">'.$content.'</div>
-			</div>';
+	return '    <fieldset class="formSlider">
+	<legend class="applicationForm__text">Feedback</legend>
+	<div class="__range __range-step">
+	<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
+	<datalist id="ticks1">
+	  <option value="1">pas assimilé</option>
+	  <option value="2">réussite ou compréhension fragile</option>
+	  <option value="3">bien compris mais besoin</option>
+	  <option value="4">complètement maitrisé</option>
+	</datalist>
+</div>
+  </fieldset>';
 }
-add_shortcode( 'feedback', 'feedback_shortcode' );
+add_shortcode( 'vector', 'vector' );
 
 add_action( 'wp_enqueue_scripts', 'simple_spoiler_head' );
 function simple_spoiler_head() {
