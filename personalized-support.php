@@ -25,6 +25,7 @@ function authentication_shortcode($atts, $content) {
 	<form method="POST" action ="#">
 	<label for="numero">Numero</label>
 	<input type="text">
+	<button type="submit">Login</button>
 	</form>
 	</div>';
 }
