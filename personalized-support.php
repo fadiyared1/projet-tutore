@@ -15,9 +15,22 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+function authentication_shortcode($atts, $content) {
+	if ( ! isset($atts['title']) ) {
+		$sp_name = __( 'Authentification', 'simple-spoiler' );
+	} else {
+		$sp_name = $atts['title'];
+	}
+	return '<div>
+	<form method="POST" action ="#">
+	<label for="numero">Numero</label>
+	<input type="text">
+	</form>
+	</div>';
+}
+add_shortcode( 'authentication', 'authentication_shortcode' );
 
-
-function vector($atts, $content) {
+function feedback_shortcode($atts, $content) {
 	if ( ! isset($atts['title']) ) {
 		$sp_name = __( 'Feedback', 'simple-spoiler' );
 	} else {
@@ -36,7 +49,7 @@ function vector($atts, $content) {
 </div>
   </fieldset>';
 }
-add_shortcode( 'vector', 'vector' );
+add_shortcode( 'feedback', 'feedback_shortcode' );
 
 add_action( 'wp_enqueue_scripts', 'personalized_support_head' );
 function personalized_support_head() {
