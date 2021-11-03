@@ -38,11 +38,11 @@ function vector($atts, $content) {
 }
 add_shortcode( 'vector', 'vector' );
 
-add_action( 'wp_enqueue_scripts', 'simple_spoiler_head' );
-function simple_spoiler_head() {
+add_action( 'wp_enqueue_scripts', 'personalized_support_head' );
+function personalized_support_head() {
 	global $post;
-	wp_register_style( 'simple_spoiler_style', plugins_url( 'css/simple-spoiler.min.css', __FILE__ ), null, '1.2' );
-	wp_register_script( 'simple_spoiler_script', plugins_url( 'js/simple-spoiler.min.js', __FILE__ ), array( 'jquery' ), '1.2', true );
-		wp_enqueue_style( 'simple_spoiler_style' );
-		wp_enqueue_script( 'simple_spoiler_script' );
+	wp_register_style( 'personalized_support_style', plugins_url( 'css/simple-spoiler.min.css', __FILE__ ), null, '1.2' );
+	wp_register_script( 'personalized_support_script', plugins_url( 'js/simple-spoiler.min.js', __FILE__ ), array( 'jquery' ), '1.2', true );
+		wp_enqueue_style( 'personalized_support_style' );
+		wp_enqueue_script( 'personalized_support_script' );
 }
