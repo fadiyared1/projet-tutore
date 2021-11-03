@@ -26,12 +26,9 @@ function personalized_support_menu_output() {
 		<h2><?php echo get_admin_page_title() ?></h2>
 
 		<form action="#" method="POST">
-			<?php
-			/*	settings_fields( 'option_group' );
-				do_settings_sections( 'simple_spoiler_page' );
-				submit_button();*/
-			?>
-		
+		<label for="numero">Numeros</label>
+		<input type="text" size="50">
+		<button type="submit">Enregistrer les numeros</button>
 		</form>
 	</div>
 	<?php
