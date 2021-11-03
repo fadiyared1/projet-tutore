@@ -53,19 +53,14 @@ function authentication_shortcode($atts, $content)
 		$title = __('Authentification', 'personalized-support');
 	}
 
-	return <<< HERE
-		<fieldset class="formSlider">
-			<legend class="applicationForm__text">$title</legend>
-			<div>
-				<form method="POST" action ="#">
-					<label for="numero">Numero</label>
-					<input type="text">
-					<button type="submit">Login</button>
-				</form>
-			</div>
-		</fieldset>
-
-		HERE;
+	return
+		'<div>
+			<form method="POST" action ="#">
+				<label for="numero">Numero</label>
+				<input type="text">
+				<button type="submit">Login</button>
+			</form>
+		</div>';
 }
 add_shortcode('authentication', 'authentication_shortcode');
 
@@ -77,10 +72,9 @@ function feedback_shortcode($atts, $content)
 		$title = $atts['title'];
 	}
 
-	return <<< HERE
-
-		<fieldset class="formSlider">
-			<legend class="applicationForm__text">$title</legend>
+	return
+		'<fieldset class="formSlider">
+			<legend class="applicationForm__text">qsd</legend>
 			<div class="__range __range-step">
 				<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
 				<datalist id="ticks1">
@@ -90,8 +84,6 @@ function feedback_shortcode($atts, $content)
 	  				<option value="4">4</option>
 				</datalist>
 			</div>
-  		</fieldset>
-
-		  HERE;
+  		</fieldset>';
 }
 add_shortcode('feedback', 'feedback_shortcode');
