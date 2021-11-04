@@ -66,13 +66,12 @@ function identification_shortcode($atts, $content)
     }
     else
     {
-        $posted_numero = $_POST[Identification::NUMERO];
-        $is_user_trying_to_login = isset($posted_numero);
+        $is_user_trying_to_login = isset($_POST[Identification::NUMERO]);
         if ($is_user_trying_to_login)
         {
             // check if numero is in DB.
 
-            User::set_numero($posted_numero);
+            User::set_numero($_POST[Identification::NUMERO]);
         }
         else
         {
