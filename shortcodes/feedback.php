@@ -4,7 +4,7 @@ add_shortcode('feedback', 'feedback_shortcode');
 function feedback_shortcode($atts, $content)
 {
 	if (!isset($atts['title'])) {
-		$title = __('Feedback', 'personalized-support');
+		$title = localize('Feedback');
 	} else {
 		$title = $atts['title'];
 	}
