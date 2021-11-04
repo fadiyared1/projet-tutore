@@ -40,6 +40,11 @@ function logout_form_html($title, $numero)
     return $html;
 }
 
+function wrong_numero_form_html($title, $numero)
+{
+    return '<div>Numéro ' . $numero . ' non existant.</div>' . login_form_html($title);
+}
+
 add_shortcode('ident', 'identification_shortcode');
 function identification_shortcode($atts, $content)
 {
@@ -69,9 +74,17 @@ function identification_shortcode($atts, $content)
         $is_user_trying_to_login = isset($_POST[Identification::NUMERO]);
         if ($is_user_trying_to_login)
         {
-            // check if numero is in DB.
+            $posted_numero = $_POST[Identification::NUMERO];
+            if (Users::is_numero_valid($posted_numero))
+            {
+                User::set_numero($posted_numero);
 
-            User::set_numero($_POST[Identification::NUMERO]);
+                $html = logout_form_html($title, $posted_numero);
+            }
+            else
+            {
+                $html = wrong_numero_form_html($title, $posted_numero);
+            }
         }
         else
         {

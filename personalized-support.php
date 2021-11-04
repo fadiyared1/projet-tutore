@@ -26,6 +26,7 @@ function personalized_support_head()
 }
 
 require_once('user.php');
+require_once('users.php');
 
 require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
 
