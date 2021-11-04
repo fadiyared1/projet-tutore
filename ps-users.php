@@ -21,7 +21,7 @@ class PSUsers
 		$create_users_table_sql =
 			"CREATE TABLE {$table_name}
 			(
-				id int(16) NOT NULL auto_increment,
+				id int(16) NOT NULL auto_increment primary key,
 				numero varchar(16) NOT NULL,
 				INDEX numero_index(numero)
 			)";
