@@ -5,21 +5,39 @@ function identification_shortcode($atts, $content)
 {
     $title = localize('Identification');
 
-    $content = "";
+    $html = "";
 
     $numero = "numero";
 
-    if (isset($_POST[$numero])) {
-        $content = $_POST[$numero];
-    } else {
+    $logged = session_id();
+    if ($logged && isset($_SESSION[$numero]))
+    {
         $content = '<div>
-                        <form method="POST" action="">
-                            <label for="' . $numero . '">Numero</label>
-                            <input type="text" name="' . $numero . '">
-                            <button type="submit">Login</button>
-                        </form>
+                        Connecté avec le numéro ' . $_SESSION[$numero] . '
                     </div>';
+
+        $html = fieldset($title, $content);
+    }
+    else
+    {
+        if (isset($_POST[$numero]))
+        {
+            start_session_wp();
+            $_SESSION[$numero] = $_POST[$numero];
+        }
+        else
+        {
+            $content = '<div>
+                            <form method="POST" action="">
+                                <label for="' . $numero . '">Numero</label>
+                                <input type="text" name="' . $numero . '">
+                                <button type="submit">Login</button>
+                            </form>
+                        </div>';
+
+            $html = fieldset($title, $content);
+        }
     }
 
-    return fieldset($title, $content);
+    return $html;
 }

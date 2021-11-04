@@ -11,7 +11,8 @@ License: MIT
 License URI: 
 */
 
-if (!defined('WPINC')) {
+if (!defined('WPINC'))
+{
 	die;
 }
 
@@ -24,10 +25,10 @@ function personalized_support_head()
 	wp_enqueue_script('personalized_support_script');
 }
 
+require_once('session.php');
+
 require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
 
 require_once(join(DIRECTORY_SEPARATOR, array('shortcodes', 'init.php')));
-
-require_once('session-init.php');
 
 require_once('admin-page.php');

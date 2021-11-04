@@ -3,13 +3,18 @@
 add_shortcode('feedback', 'feedback_shortcode');
 function feedback_shortcode($atts, $content)
 {
-	if (!isset($atts['title'])) {
-		$title = localize('Feedback');
-	} else {
-		$title = $atts['title'];
-	}
+	if (session_id())
+	{
+		if (!isset($atts['title']))
+		{
+			$title = localize('Feedback');
+		}
+		else
+		{
+			$title = $atts['title'];
+		}
 
-	$content = '<div class="__range __range-step">
+		$content = '<div class="__range __range-step">
 					<input value="0" type="range" max="4" min="1" step="1" list="ticks1">
 					<datalist id="ticks1">
 						<option value="1">1</option>
@@ -19,5 +24,10 @@ function feedback_shortcode($atts, $content)
 					</datalist>
 				</div>';
 
-	return fieldset($title, $content);
+		return fieldset($title, $content);
+	}
+	else
+	{
+		return '';
+	}
 }
