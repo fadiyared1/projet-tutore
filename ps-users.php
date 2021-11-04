@@ -38,8 +38,6 @@ class PSUsers
 		$prepared_statement = $wpdb->prepare("SELECT id FROM {$table_name} WHERE numero = %d", $numero);
 		$values = $wpdb->get_col($prepared_statement);
 
-		var_dump($values);
-
 		return count($values) > 0;
 	}
 }
