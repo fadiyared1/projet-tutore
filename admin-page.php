@@ -1,9 +1,5 @@
 <?php
 
-if (!defined('WPINC')) {
-	die;
-}
-
 add_action('admin_menu', 'personalized_support_menu');
 function personalized_support_menu()
 {

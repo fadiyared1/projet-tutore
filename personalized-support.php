@@ -25,6 +25,7 @@ function personalized_support_head()
 }
 
 require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
+
 require_once(join(DIRECTORY_SEPARATOR, array('shortcodes', 'init.php')));
 
 require_once('session-init.php');
