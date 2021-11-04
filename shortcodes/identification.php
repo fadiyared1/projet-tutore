@@ -32,7 +32,7 @@ function identification_shortcode($atts, $content)
     $user_numero = User::get_numero();
     if (isset($user_numero))
     {
-        if (isset($_SESSION['logout']))
+        if (isset($_POST['logout']))
         {
             User::set_numero(null);
         }
