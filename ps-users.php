@@ -50,6 +50,7 @@ class PSUsers
 
 	static function is_numero_valid($numero)
 	{
-		return PSUsers::get_user($numero) != null;
+		//return PSUsers::get_user($numero) != null;
+		return true;
 	}
 }
