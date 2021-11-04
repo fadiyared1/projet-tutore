@@ -14,7 +14,7 @@ class PSUsers
 
 	static function maybe_create_table()
 	{
-		//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
 		$table_name = PSUsers::$table_name;
 
