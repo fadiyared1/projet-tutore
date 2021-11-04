@@ -5,7 +5,26 @@ class Identification
     const NUMERO = "numero";
 }
 
-function connected_html($title, $numero)
+function login_form_html($title)
+{
+    $login = Localisation::get('Se connecter');
+
+    $numero_str = Identification::NUMERO;
+
+    $content = '<div>
+                    <form method="POST" action="">
+                        <label for="' . $numero_str . '">Numero</label>
+                        <input type="text" name="' . $numero_str . '">
+                        <button type="submit">' . $login . '</button>
+                    </form>
+                </div>';
+
+    $html = HtmlGen::fieldset($title, $content);
+
+    return $html;
+}
+
+function logout_form_html($title, $numero)
 {
     $logout = Localisation::get('Se deconnecter');
 
@@ -25,42 +44,39 @@ add_shortcode('ident', 'identification_shortcode');
 function identification_shortcode($atts, $content)
 {
     $title = Localisation::get('Identification');
-    $login = Localisation::get('Se connecter');
 
     $html = "";
 
     $user_numero = User::get_numero();
-    if (isset($user_numero))
+
+    $is_user_logged = isset($user_numero);
+    if ($is_user_logged)
     {
-        if (isset($_POST['logout']))
+        $is_user_logging_out = isset($_POST['logout']);
+        if ($is_user_logging_out)
         {
             User::set_numero(null);
+
+            $html = login_form_html($title);
         }
         else
         {
-            $html = connected_html($title, $user_numero);
+            $html = logout_form_html($title, $user_numero);
         }
     }
     else
     {
-        $numero_str = Identification::NUMERO;
-
-        $posted_numero = $_POST[$numero_str];
-        if (isset($posted_numero))
+        $posted_numero = $_POST[Identification::NUMERO];
+        $is_user_trying_to_login = isset($posted_numero);
+        if ($is_user_trying_to_login)
         {
+            // check if numero is in DB.
+
             User::set_numero($posted_numero);
         }
         else
         {
-            $content = '<div>
-                            <form method="POST" action="">
-                                <label for="' . $numero_str . '">Numero</label>
-                                <input type="text" name="' . $numero_str . '">
-                                <button type="submit">' . $login . '</button>
-                            </form>
-                        </div>';
-
-            $html = HtmlGen::fieldset($title, $content);
+            $html = login_form_html($title);
         }
     }
 
