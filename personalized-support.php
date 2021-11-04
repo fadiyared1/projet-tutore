@@ -24,12 +24,9 @@ function personalized_support_head()
 	wp_enqueue_script('personalized_support_script');
 }
 
-require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'localization.php')));
+require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
+require_once(join(DIRECTORY_SEPARATOR, array('shortcodes', 'init.php')));
 
 require_once('session-init.php');
 
 require_once('admin-page.php');
-
-require_once('html-helpers.php');
-
-require_once('shortcodes.php');
