@@ -54,13 +54,16 @@ function authentication_shortcode($atts, $content)
 	}
 
 	return
-		'<div>
-			<form method="POST" action ="#">
-				<label for="numero">Numero</label>
-				<input type="text">
-				<button type="submit">Login</button>
-			</form>
-		</div>';
+		'<fieldset class="formSlider">
+			<legend class="applicationForm__text">' . $title . '</legend>
+			<div>
+				<form method="POST" action ="#">
+					<label for="numero">Numero</label>
+					<input type="text">
+					<button type="submit">Login</button>
+				</form>
+			</div>
+		</fieldset>';
 }
 add_shortcode('authentication', 'authentication_shortcode');
 
@@ -74,7 +77,7 @@ function feedback_shortcode($atts, $content)
 
 	return
 		'<fieldset class="formSlider">
-			<legend class="applicationForm__text">qsd</legend>
+			<legend class="applicationForm__text">' . $title . '</legend>
 			<div class="__range __range-step">
 				<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
 				<datalist id="ticks1">
