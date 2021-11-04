@@ -18,7 +18,6 @@ if (!defined('WPINC')) {
 add_action('wp_enqueue_scripts', 'personalized_support_head');
 function personalized_support_head()
 {
-	global $post;
 	wp_register_style('personalized_support_style', plugins_url('css/personalized-support.min.css', __FILE__), null, '1.2');
 	wp_register_script('personalized_support_script', plugins_url('js/personalized-support.min.js', __FILE__), array('jquery'), '1.2', true);
 	wp_enqueue_style('personalized_support_style');
@@ -39,32 +38,51 @@ function personalized_support_menu_output()
 		<h2><?php echo get_admin_page_title() ?></h2>
 
 		<form action="#" method="POST">
-			<label for="numero">Numeros</label>
+			<label for="numero">Numéros</label>
 			<input type="text" size="50">
-			<button type="submit">Enregistrer les numeros</button>
+			<button type="submit">Enregistrer les numéros</button>
 		</form>
 	</div>
 <?php
 }
 
-function authentication_shortcode($atts, $content)
+function fieldset($title_legend, $content)
 {
-	$title = __('Authentification', 'personalized-support');
-
-	return
-		'<fieldset class="formSlider">
-			<legend class="applicationForm__text">' . $title . '</legend>
-			<div>
-				<form method="POST" action ="#">
-					<label for="numero">Numero</label>
-					<input type="text">
-					<button type="submit">Login</button>
-				</form>
-			</div>
+	return '<fieldset class="formSlider">
+			<legend class="applicationForm__text">' . $title_legend . '</legend>
+			' . $content . '
 		</fieldset>';
 }
-add_shortcode('authentication', 'authentication_shortcode');
 
+add_shortcode('meta', 'metadata_shortcode');
+function metadata_shortcode($atts, $content)
+{
+	$title = __('Identification', 'personalized-support');
+
+	$content = '<div>
+					Test
+				</div>';
+
+	return fieldset($title, $content);
+}
+
+add_shortcode('ident', 'identification_shortcode');
+function identification_shortcode($atts, $content)
+{
+	$title = __('Identification', 'personalized-support');
+
+	$content = '<div>
+					<form method="POST" action ="#">
+						<label for="numero">Numero</label>
+						<input type="text">
+						<button type="submit">Login</button>
+					</form>
+				</div>';
+
+	return fieldset($title, $content);
+}
+
+add_shortcode('feedback', 'feedback_shortcode');
 function feedback_shortcode($atts, $content)
 {
 	if (!isset($atts['title'])) {
@@ -73,18 +91,15 @@ function feedback_shortcode($atts, $content)
 		$title = $atts['title'];
 	}
 
-	return
-		'<fieldset class="formSlider">
-			<legend class="applicationForm__text">' . $title . '</legend>
-			<div class="__range __range-step">
-				<input value="3" type="range" max="4" min="1" step="1" list="ticks1">
-				<datalist id="ticks1">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-	  				<option value="4">4</option>
-				</datalist>
-			</div>
-  		</fieldset>';
+	$content = '<div class="__range __range-step">
+					<input value="0" type="range" max="4" min="1" step="1" list="ticks1">
+					<datalist id="ticks1">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</datalist>
+				</div>';
+
+	return fieldset($title, $content);
 }
-add_shortcode('feedback', 'feedback_shortcode');
