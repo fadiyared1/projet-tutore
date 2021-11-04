@@ -5,7 +5,7 @@ class Identification
     const NUMERO = "numero";
 }
 
-function login_form_html($title)
+function login_form_html($title, $extra_html = "")
 {
     $login = Localisation::get('Se connecter');
 
@@ -17,6 +17,7 @@ function login_form_html($title)
                         <input type="text" name="' . $numero_str . '">
                         <button type="submit">' . $login . '</button>
                     </form>
+                    ' . $extra_html . '
                 </div>';
 
     $html = HtmlGen::fieldset($title, $content);
@@ -42,7 +43,7 @@ function logout_form_html($title, $numero)
 
 function wrong_numero_form_html($title, $numero)
 {
-    return '<div>Numéro ' . $numero . ' non existant.</div>' . login_form_html($title);
+    return login_form_html($title, '<div>Numéro ' . $numero . ' non existant.</div>');
 }
 
 add_shortcode('ident', 'identification_shortcode');
