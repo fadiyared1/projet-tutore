@@ -14,18 +14,6 @@ class PSUsers
 
 	static function maybe_create_table()
 	{
-
-
-		global $wpdb;
-
-		$table_name = PSUsers::$table_name;
-
-		$sql = "DROP TABLE {$table_name}";
-
-		$wpdb->query($sql);
-
-
-
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
 		$table_name = PSUsers::$table_name;
