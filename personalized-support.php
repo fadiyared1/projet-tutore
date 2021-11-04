@@ -27,7 +27,12 @@ function personalized_support_head()
 
 require_once('user.php');
 require_once('users.php');
-Users::init();
+
+add_action('init', 'ps_init');
+function ps_init()
+{
+	Users::init();
+}
 
 require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
 
