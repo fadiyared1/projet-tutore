@@ -9,8 +9,7 @@ function identification_shortcode($atts, $content)
 
     $numero = "numero";
 
-    $logged = session_id();
-    if ($logged && isset($_SESSION[$numero]))
+    if (isset($_SESSION[$numero]))
     {
         $content = '<div>
                         Connecté avec le numéro ' . $_SESSION[$numero] . '
@@ -22,7 +21,6 @@ function identification_shortcode($atts, $content)
     {
         if (isset($_POST[$numero]))
         {
-            start_session_wp();
             $_SESSION[$numero] = $_POST[$numero];
         }
         else
