@@ -2,7 +2,7 @@
 
 class PSUser
 {
-	static function has_numero()
+	static function has_valid_numero()
 	{
 		return isset($_SESSION[Identification::NUMERO]);
 	}

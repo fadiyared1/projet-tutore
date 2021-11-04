@@ -29,6 +29,23 @@ class PSUsers
 		maybe_create_table($table_name, $create_users_table_sql);
 	}
 
+	static function add_users($numeros)
+	{
+		global $wpdb;
+
+		$table_name = PSUsers::$table_name;
+
+		$sql = "INSERT INTO {$table_name} (numero) VALUES ";
+
+		foreach ($numeros as $numero)
+		{
+			$sql .= "($numero),";
+		}
+		$sql = substr($sql, 0, -1);
+
+		$wpdb->query($sql);
+	}
+
 	static function get_user($numero)
 	{
 		global $wpdb;
@@ -50,7 +67,6 @@ class PSUsers
 
 	static function is_numero_valid($numero)
 	{
-		//return PSUsers::get_user($numero) != null;
-		return true;
+		return PSUsers::get_user($numero) != null;
 	}
 }
