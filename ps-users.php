@@ -14,6 +14,18 @@ class PSUsers
 
 	static function maybe_create_table()
 	{
+
+
+		global $wpdb;
+
+		$table_name = PSUsers::$table_name;
+
+		$sql = "DROP TABLE {$table_name}";
+
+		$wpdb->query($sql);
+
+
+
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
 		$table_name = PSUsers::$table_name;
@@ -23,7 +35,7 @@ class PSUsers
 			(
 				id int(16) NOT NULL auto_increment primary key,
 				numero varchar(16) NOT NULL,
-				INDEX numero_index(numero)
+				UNIQUE INDEX numero_index(numero)
 			)";
 
 		maybe_create_table($table_name, $create_users_table_sql);
