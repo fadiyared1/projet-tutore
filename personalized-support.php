@@ -25,7 +25,7 @@ function personalized_support_head()
 	wp_enqueue_script('personalized_support_script');
 }
 
-require_once('session.php');
+require_once('user.php');
 
 require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
 
