@@ -49,9 +49,7 @@ function personalized_support_menu_output()
 
 function authentication_shortcode($atts, $content)
 {
-	if (!isset($atts['title'])) {
-		$title = __('Authentification', 'personalized-support');
-	}
+	$title = __('Authentification', 'personalized-support');
 
 	return
 		'<fieldset class="formSlider">
