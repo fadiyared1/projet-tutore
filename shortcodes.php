@@ -5,6 +5,6 @@ if (!defined('WPINC')) {
 }
 
 $shortcodes_folder = 'shortcodes';
-require_once(join(DIRECTORY_SEPARATOR, 'metadata.php'));
-require_once(join(DIRECTORY_SEPARATOR, 'identification.php'));
-require_once(join(DIRECTORY_SEPARATOR, 'feedback.php'));
+require_once(join(DIRECTORY_SEPARATOR, array($shortcodes_folder, 'metadata.php')));
+require_once(join(DIRECTORY_SEPARATOR, array($shortcodes_folder, 'identification.php')));
+require_once(join(DIRECTORY_SEPARATOR, array($shortcodes_folder, 'feedback.php')));
