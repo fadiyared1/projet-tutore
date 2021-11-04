@@ -1,7 +1,5 @@
 <?php
 
-require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
 class Users
 {
 	static $table_name = "";
@@ -16,6 +14,8 @@ class Users
 
 	static function maybe_create_table()
 	{
+		//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
 		$table_name = Users::$table_name;
 
 		$create_users_table_sql =
