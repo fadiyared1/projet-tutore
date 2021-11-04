@@ -53,10 +53,7 @@ function identification_shortcode($atts, $content)
 
     $html = "";
 
-    $user_numero = PSUser::get_numero();
-
-    $is_user_logged = isset($user_numero);
-    if ($is_user_logged)
+    if (PSUser::has_numero())
     {
         $is_user_logging_out = isset($_POST['logout']);
         if ($is_user_logging_out)
@@ -67,7 +64,7 @@ function identification_shortcode($atts, $content)
         }
         else
         {
-            $html = logout_form_html($title, $user_numero);
+            $html = logout_form_html($title, PSUser::get_numero());
         }
     }
     else

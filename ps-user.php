@@ -2,6 +2,11 @@
 
 class PSUser
 {
+	static function has_numero()
+	{
+		return isset($_SESSION[Identification::NUMERO]);
+	}
+
 	static function get_numero()
 	{
 		return $_SESSION[Identification::NUMERO];

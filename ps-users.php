@@ -29,7 +29,7 @@ class PSUsers
 		maybe_create_table($table_name, $create_users_table_sql);
 	}
 
-	static function is_numero_valid($numero)
+	static function get_user($numero)
 	{
 		global $wpdb;
 
@@ -38,6 +38,18 @@ class PSUsers
 		$prepared_statement = $wpdb->prepare("SELECT id FROM {$table_name} WHERE numero = %d", $numero);
 		$values = $wpdb->get_col($prepared_statement);
 
-		return count($values) > 0;
+		if (count($values) > 0)
+		{
+			return $values[0];
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	static function is_numero_valid($numero)
+	{
+		return PSUsers::get_user($numero) != null;
 	}
 }

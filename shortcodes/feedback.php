@@ -3,7 +3,7 @@
 add_shortcode('feedback', 'feedback_shortcode');
 function feedback_shortcode($atts, $content)
 {
-	if (session_id())
+	if (PSUser::has_numero())
 	{
 		if (!isset($atts['title']))
 		{
