@@ -3,7 +3,7 @@
 add_action('admin_menu', 'personalized_support_menu');
 function personalized_support_menu()
 {
-	add_menu_page(localize('Plugin Personalized Support'), 'Personalized Support', 'manage_options', 'personalized-support', 'personalized_support_menu_output');
+	add_menu_page(Localisation::get('Plugin Personalized Support'), 'Personalized Support', 'manage_options', 'personalized-support', 'personalized_support_menu_output');
 }
 
 function field_separator()

@@ -5,18 +5,18 @@ class Identification
     const NUMERO = "numero";
 }
 
-function connected_html($title)
+function connected_html($title, $numero)
 {
-    $logout = localize('Se deconnecter');
+    $logout = Localisation::get('Se deconnecter');
 
     $content = '<div>
-                    Connecté avec le numéro ' . User::get_numero() . '
+                    Connecté avec le numéro ' . $numero . '
                     <form method="POST" action="">
-                            <button type="submit">' . $logout . '</button>
+                        <button type="submit" name="logout">' . $logout . '</button>
                     </form>
                 </div>';
 
-    $html = fieldset($title, $content);
+    $html = HtmlGen::fieldset($title, $content);
 
     return $html;
 }
@@ -24,19 +24,22 @@ function connected_html($title)
 add_shortcode('ident', 'identification_shortcode');
 function identification_shortcode($atts, $content)
 {
-    $title = localize('Identification');
-    $login = localize('Se connecter');
+    $title = Localisation::get('Identification');
+    $login = Localisation::get('Se connecter');
 
     $html = "";
 
     $user_numero = User::get_numero();
     if (isset($user_numero))
     {
-        $content = '<div>
-                        Connecté avec le numéro ' . $user_numero . '
-                    </div>';
-
-        $html = fieldset($title, $content);
+        if (isset($_SESSION['logout']))
+        {
+            User::set_numero(null);
+        }
+        else
+        {
+            $html = connected_html($title, $user_numero);
+        }
     }
     else
     {
@@ -57,7 +60,7 @@ function identification_shortcode($atts, $content)
                             </form>
                         </div>';
 
-            $html = fieldset($title, $content);
+            $html = HtmlGen::fieldset($title, $content);
         }
     }
 

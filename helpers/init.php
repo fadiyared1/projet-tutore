@@ -1,4 +1,4 @@
 <?php
 
-require_once('html.php');
-require_once('localization.php');
+require_once('htmlgen.php');
+require_once('localisation.php');
