@@ -20,9 +20,11 @@ class PSUsers
 
 		$create_users_table_sql =
 			"CREATE TABLE {$table_name}
-			(id int(16) NOT NULL auto_increment,
-			numero varchar(16) NOT NULL,
-			INDEX numero_index(numero)";
+			(
+				id int(16) NOT NULL auto_increment,
+				numero varchar(16) NOT NULL,
+				INDEX numero_index(numero)
+			)";
 
 		maybe_create_table($table_name, $create_users_table_sql);
 	}
