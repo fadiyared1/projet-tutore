@@ -1,6 +1,6 @@
 <?php
 
-class User
+class PSUser
 {
 	static function get_numero()
 	{

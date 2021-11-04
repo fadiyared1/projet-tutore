@@ -25,14 +25,9 @@ function personalized_support_head()
 	wp_enqueue_script('personalized_support_script');
 }
 
-require_once('user.php');
-require_once('users.php');
-
-add_action('init', 'ps_init');
-function ps_init()
-{
-	Users::init();
-}
+require_once('ps-user.php');
+require_once('ps-users.php');
+PSUsers::init();
 
 require_once(join(DIRECTORY_SEPARATOR, array('helpers', 'init.php')));
 

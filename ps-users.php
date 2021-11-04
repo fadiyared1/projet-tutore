@@ -1,22 +1,22 @@
 <?php
 
-class Users
+class PSUsers
 {
 	static $table_name = "";
 
 	static function init()
 	{
 		global $wpdb;
-		Users::$table_name = $wpdb->prefix . 'ps_users';
+		PSUsers::$table_name = $wpdb->prefix . 'ps_users';
 
-		Users::maybe_create_table();
+		PSUsers::maybe_create_table();
 	}
 
 	static function maybe_create_table()
 	{
 		//require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-		$table_name = Users::$table_name;
+		$table_name = PSUsers::$table_name;
 
 		$create_users_table_sql =
 			"CREATE TABLE {$table_name}
@@ -31,7 +31,7 @@ class Users
 	{
 		global $wpdb;
 
-		$table_name = Users::$table_name;
+		$table_name = PSUsers::$table_name;
 
 		$prepared_statement = $wpdb->prepare("SELECT id FROM {$table_name} WHERE numero = %d", $numero);
 		$values = $wpdb->get_col($prepared_statement);
