@@ -22,7 +22,8 @@ function personalized_support_menu_output()
 		<h2><?php echo get_admin_page_title() ?></h2>
 
 		<form action="#" method="POST">
-			<div>Numéros des étudiants à rentrer, séparateur de champ : <?php echo field_separator() ?></div>
+			<div>Numéros des étudiants à rentrer, séparateur de champ : <b><?php echo field_separator() ?></b></div>
+			<div>Exemple : A104B10<?php echo field_separator() ?>B108B14<?php echo field_separator() ?>C504E95</div>
 			<input type="text" size="50">
 			<button type="submit">Enregistrer les numéros</button>
 		</form>
