@@ -14,6 +14,11 @@ function feedback_shortcode($atts, $content)
 	var_dump($newstr);
 	var_dump($rrrr);
 
+	$qsd = shortcode_parse_atts(
+		'[soundcloud url="http://api.soundcloud.com/tracks/67658191" params="" width=" 100%" height="166" iframe="true" /]'
+	);
+	var_dump($qsd); // echo just the URL
+
 	if (PSUser::has_valid_numero())
 	{
 		if (!isset($atts['title']))
