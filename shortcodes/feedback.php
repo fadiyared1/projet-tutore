@@ -5,12 +5,11 @@ function feedback_shortcode($atts, $content)
 {
 	$whole_content = get_the_content();
 
-	$start_metadata_pos = strpos($whole_content, '[meta');
-	$end_metadata_pos = strpos($whole_content, "[/meta]") + 7;
-	$metadata_shortcode = substr($whole_content, $start_metadata_pos, $end_metadata_pos);
+	$start_metadata_pos = strpos($whole_content, '[meta]');
+	$len_metadata = strpos($whole_content, "[/meta]") - $start_metadata_pos;
+	$metadata_shortcode = substr($whole_content, $start_metadata_pos, $len_metadata);
 
 	$rrrr = shortcode_parse_atts($metadata_shortcode);
-	var_dump($whole_content);
 	var_dump($metadata_shortcode);
 	var_dump($rrrr);
 
