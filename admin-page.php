@@ -17,19 +17,22 @@ function personalized_support_menu_output()
 	{
 		$numeros = explode(",", $_POST['numeros']);
 
+		$html = "";
+
 		$success = PSUsers::add_users($numeros);
-
-		$content = "";
-
 		if (!$success)
 		{
 			global $wpdb;
-			$content .= $wpdb->last_error;
+			$html = '<div class="notice notice-error">
+		        		<p>' . $wpdb->last_error . '</p>
+    				</div>';
 		}
-
-		$content .= '<div>Numéros ajoutés.</div>';
-
-		$html = HtmlGen::fieldset(Localisation::get('Résultat'), $content);
+		else
+		{
+			$html = '<div class="notice notice-success is-dismissible">
+		        		<p>Numéros ajoutés.</p>
+    				</div>';
+		}
 
 		echo $html;
 	}
