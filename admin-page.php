@@ -24,7 +24,7 @@ function personalized_support_menu_output()
 		{
 			global $wpdb;
 			$html = '<div class="notice notice-error">
-		        		<p>' . $wpdb->last_error . '</p>
+		        		<p>Erreur en rentrant les numéros : ' . $wpdb->last_error . '</p>
     				</div>';
 		}
 		else
