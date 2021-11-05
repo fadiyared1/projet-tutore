@@ -39,7 +39,7 @@ class PSUsers
 
 		foreach ($numeros as $numero)
 		{
-			$sql .= "($numero),";
+			$sql .= "('$numero'),";
 		}
 		$sql = substr($sql, 0, -1);
 
