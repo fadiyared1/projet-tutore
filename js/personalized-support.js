@@ -37,8 +37,8 @@ document.querySelectorAll(".__range-step").forEach(function (ctrl) {
 		jQuery.ajax({
 			url: personalizedSupport.ajaxUrl,
 			data: {
-				'action': 'ps_send_feedback',
-				'fruit': fruit,
+				'action': personalizedSupport.sendFeedback,
+				'dataset': dataList.dataset,
 				'nonce': personalizedSupport.nonce
 			},
 			success: function (data) {

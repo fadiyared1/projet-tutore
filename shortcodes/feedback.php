@@ -4,6 +4,9 @@ class Feedback
 {
 	const item = "item";
 
+	const ajax_send_feedback = 'ps_send_feedback';
+	const ajax_nonce_name = 'ps_ajax_nonce';
+
 	static $table_name = "";
 
 	static function init()
@@ -43,7 +46,8 @@ class Feedback
 			'personalized_support_script',
 			'const personalizedSupport = ' . json_encode(array(
 				'ajaxUrl' => admin_url('admin-ajax.php'),
-				'nonce' => wp_create_nonce('ps-ajax-nonce')
+				'sendFeedback' => Feedback::ajax_send_feedback,
+				'nonce' => wp_create_nonce(Feedback::ajax_nonce_name)
 			)),
 			'before'
 		);
@@ -111,8 +115,31 @@ function feedback_shortcode($atts, $content)
 	return '';
 }
 
-add_action('wp_ajax_nopriv_ps_send_feedback', 'handle_feedback_from_user');
-add_action('wp_ajax_ps_send_feedback', 'handle_feedback_from_user');
+add_action('wp_ajax_nopriv_' . Feedback::ajax_send_feedback, 'handle_feedback_from_user');
+add_action('wp_ajax_' . Feedback::ajax_send_feedback, 'handle_feedback_from_user');
 function handle_feedback_from_user()
 {
+	$nonce = $_POST['nonce'];
+
+	if (!wp_verify_nonce($nonce, Feedback::ajax_nonce_name))
+	{
+		die('Nonce value cannot be verified.');
+	}
+
+	// The $_REQUEST contains all the data sent via ajax
+	if (isset($_REQUEST) && isset($_REQUEST['dataset']))
+	{
+		$dataset = $_REQUEST['dataset'];
+
+		$activite = $dataset[Metadata::activite];
+		$cours = $dataset[Metadata::cours];
+		$item = $dataset[Feedback::item];
+
+		// Now we'll return it to the javascript function
+		// Anything outputted will be returned in the response
+		var_dump($_REQUEST);
+	}
+
+	// Always die in functions echoing ajax content
+	die();
 }
