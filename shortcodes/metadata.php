@@ -18,9 +18,13 @@ function metadata_shortcode($atts, $content)
     {
         $activite = $atts[Metadata::activite];
         $cours = $atts[Metadata::cours];
-    }
 
-    return '<div class="notice notice-error">
+        return '';
+    }
+    else
+    {
+        return '<div class="notice notice-error">
                 <p>Balise metadata incorrecte, les attributs activite et cours doivent avoir des valeurs non nulles.</p>
             </div>';
+    }
 }
