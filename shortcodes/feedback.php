@@ -10,6 +10,7 @@ function feedback_shortcode($atts, $content)
 	$metadata_content = substr($whole_content, $start_metadata_pos, $end_metadata_pos);
 
 	$rrrr = shortcode_parse_atts($metadata_content);
+	var_dump($whole_content);
 	var_dump($metadata_content);
 	var_dump($rrrr);
 
