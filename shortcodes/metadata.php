@@ -14,8 +14,6 @@ class Metadata
 add_shortcode('meta', 'metadata_shortcode');
 function metadata_shortcode($atts, $content)
 {
-    var_dump("metadata_shortcode");
-
     if (Metadata::is_valid($atts))
     {
         $activite = $atts[Metadata::activite];
