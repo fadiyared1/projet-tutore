@@ -5,7 +5,11 @@ function feedback_shortcode($atts, $content)
 {
 	$whole_content = get_the_content();
 
-	$rrrr = shortcode_parse_atts($whole_content);
+	$start_metadata_pos = strpos($whole_content, '[meta');
+	$end_metadata_pos = strpos($whole_content, '[\meta]') + 7;
+	$metadata_content = substr($whole_content, $start_metadata_pos, $end_metadata_pos);
+
+	$rrrr = shortcode_parse_atts($metadata_content);
 	var_dump($rrrr);
 
 	if (PSUser::has_valid_numero())
