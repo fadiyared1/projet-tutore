@@ -3,6 +3,8 @@
 add_shortcode('feedback', 'feedback_shortcode');
 function feedback_shortcode($atts, $content)
 {
+	var_dump("feedback_shortcode");
+
 	if (PSUser::has_valid_numero())
 	{
 		if (!isset($atts['title']))
