@@ -53,11 +53,11 @@ class PSUsers
 		$table_name = PSUsers::$table_name;
 
 		$prepared_statement = $wpdb->prepare("SELECT id FROM {$table_name} WHERE numero = %s", $numero);
-		$values = $wpdb->get_col($prepared_statement);
+		$users = $wpdb->get_col($prepared_statement);
 
-		if (count($values) > 0)
+		if (count($users) > 0)
 		{
-			return $values[0];
+			return $users[0];
 		}
 		else
 		{
