@@ -8,7 +8,7 @@ function feedback_shortcode($atts, $content)
 	$start_metadata_pos = strpos($whole_content, '[meta');
 	$len_metadata = strpos($whole_content, "[/meta]") - $start_metadata_pos;
 	$metadata_shortcode = substr($whole_content, $start_metadata_pos, $len_metadata);
-	$newstr = substr_replace($metadata_shortcode, "/", $len_metadata - 1, 0);
+	$newstr = substr_replace($metadata_shortcode, " /", $len_metadata - 1, 0);
 
 	$rrrr = shortcode_parse_atts($newstr);
 	var_dump($newstr);
