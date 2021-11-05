@@ -43,7 +43,7 @@ class PSUsers
 		}
 		$sql = substr($sql, 0, -1);
 
-		$wpdb->query($sql);
+		return $wpdb->query($sql);
 	}
 
 	static function get_user($numero)
@@ -57,7 +57,6 @@ class PSUsers
 
 		if (count($values) > 0)
 		{
-			var_dump($values);
 			return $values[0];
 		}
 		else

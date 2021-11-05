@@ -17,7 +17,21 @@ function personalized_support_menu_output()
 	{
 		$numeros = explode(",", $_POST['numeros']);
 
-		PSUsers::add_users($numeros);
+		$success = PSUsers::add_users($numeros);
+
+		$content = "";
+
+		if (!$success)
+		{
+			global $wpdb;
+			$content .= $wpdb->last_error;
+		}
+
+		$content .= '<div>Numéros ajoutés.</div>';
+
+		$html = HtmlGen::fieldset(Localisation::get('Résultat'), $content);
+
+		echo $html;
 	}
 
 ?>
