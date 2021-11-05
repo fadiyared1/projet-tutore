@@ -119,12 +119,11 @@ add_action('wp_ajax_nopriv_' . Feedback::ajax_send_feedback, 'handle_feedback_fr
 add_action('wp_ajax_' . Feedback::ajax_send_feedback, 'handle_feedback_from_user');
 function handle_feedback_from_user()
 {
-	$nonce = $_POST['nonce'];
+	$nonce = $_REQUEST['nonce'];
 
 	if (!wp_verify_nonce($nonce, Feedback::ajax_nonce_name))
 	{
-		// die('Nonce value cannot be verified.');
-		die($_POST['nonce'] . $_REQUEST['nonce']);
+		die('Nonce value cannot be verified.');
 	}
 
 	// The $_REQUEST contains all the data sent via ajax
