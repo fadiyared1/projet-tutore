@@ -123,7 +123,8 @@ function handle_feedback_from_user()
 
 	if (!wp_verify_nonce($nonce, Feedback::ajax_nonce_name))
 	{
-		die('Nonce value cannot be verified.');
+		// die('Nonce value cannot be verified.');
+		die($_POST['nonce'] . $_REQUEST['nonce']);
 	}
 
 	// The $_REQUEST contains all the data sent via ajax
