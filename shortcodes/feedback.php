@@ -3,7 +3,10 @@
 add_shortcode('feedback', 'feedback_shortcode');
 function feedback_shortcode($atts, $content)
 {
-	var_dump($content);
+	$whole_content = get_the_content();
+
+	$rrrr = shortcode_parse_atts($whole_content);
+	var_dump($rrrr);
 
 	if (PSUser::has_valid_numero())
 	{
