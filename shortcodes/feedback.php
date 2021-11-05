@@ -37,6 +37,18 @@ class Feedback
 		maybe_create_table($table_name, $create_feedbacks_table_sql);
 	}
 
+	static function enqueue_ajax()
+	{
+		wp_add_inline_script(
+			'personalized_support_script',
+			'const personalizedSupport = ' . json_encode(array(
+				'ajaxUrl' => admin_url('admin-ajax.php'),
+				'nonce' => wp_create_nonce('ps-ajax-nonce')
+			)),
+			'before'
+		);
+	}
+
 	static function is_valid($atts)
 	{
 		return !empty($atts[Feedback::item]);
@@ -97,4 +109,10 @@ function feedback_shortcode($atts, $content)
 	}
 
 	return '';
+}
+
+add_action('wp_ajax_nopriv_ps_send_feedback', 'handle_feedback_from_user');
+add_action('wp_ajax_ps_send_feedback', 'handle_feedback_from_user');
+function handle_feedback_from_user()
+{
 }

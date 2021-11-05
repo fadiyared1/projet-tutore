@@ -3,12 +3,16 @@ document.querySelectorAll(".__range-step").forEach(function (ctrl) {
 	var output = ctrl.querySelector('output');
 	var newPoint, newPlace, offset;
 	el.oninput = function () {
+
+		var allOptions = ctrl.querySelectorAll("option");
+
 		// colorize step options
-		ctrl.querySelectorAll("option").forEach(function (opt) {
+		allOptions.forEach(function (opt) {
 			if (opt.value <= el.valueAsNumber)
 				opt.style.backgroundColor = 'green';
 			else
 				opt.style.backgroundColor = '#aaa';
+
 		});
 		// colorize before and after
 		var valPercent = (el.valueAsNumber - parseInt(el.min)) / (parseInt(el.max) - parseInt(el.min));
@@ -24,6 +28,27 @@ document.querySelectorAll(".__range-step").forEach(function (ctrl) {
 			output.style.left = "50%";
 			output.style.left = ((selectedOpt.offsetLeft + selectedOpt.offsetWidth / 2) - output.offsetWidth / 2) + 'px';
 		}
+
+		var dataList = ctrl.querySelector('datalist');
+		var currentSelectedOption = ctrl.querySelectorAll("option")[el.valueAsNumber - 1]
+		console.log(currentSelectedOption);
+		console.log(dataList);
+
+		jQuery.ajax({
+			url: personalizedSupport.ajaxUrl,
+			data: {
+				'action': 'ps_send_feedback',
+				'fruit': fruit,
+				'nonce': personalizedSupport.nonce
+			},
+			success: function (data) {
+				// This outputs the result of the ajax request
+				console.log(data);
+			},
+			error: function (errorThrown) {
+				console.log(errorThrown);
+			}
+		});
 	};
 	el.oninput();
 });
