@@ -114,36 +114,17 @@ function export_feedbacks_to_csv()
 
 	global $wpdb;
 
-	$filename = 'lunchbox-orders';
-	$generatedDate = $generatedDate = date('d-m-Y His');
+	$filename = "feedbacks_" . date('d-m-Y') . ".csv";
 
-	/**
-	 * output header so that file is downloaded
-	 * instead of open for reading.
-	 */
-	header("Pragma: public");
-	header("Expires: 0");
-	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-	header("Cache-Control: private", false);
-	header('Content-Type: text/csv; charset=utf-8');
-	// header("Content-Type: application/octet-stream");
-	header("Content-Disposition: attachment; filename=\"" . $filename . " " . $generatedDate . ".csv\";");
-	// header('Content-Disposition: attachment; filename=lunchbox_orders.csv');
-	header("Content-Transfer-Encoding: binary");
+	header('Content-Type: text/csv');
+	header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
 
-	/**
-	 * create a file pointer connected to the output stream
-	 * @var [type]
-	 */
-	$output = fopen('php://output', 'w');
+	$f = fopen('php://output', 'w');
 
-	/**
-	 * output the column headings
-	 */
-	fputcsv($output, array('Order ID', 'Order Title', 'Order Date'));
+	$columns_heading = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
+	fputcsv($f, $columns_heading);
 
-
-	return $output;
+	return $f;
 }
 
 
