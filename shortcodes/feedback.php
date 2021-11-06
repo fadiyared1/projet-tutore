@@ -152,12 +152,35 @@ function feedback_shortcode($atts, $content)
 						<option value="4">4</option>
 					</datalist>
 					</div>';*/
-					'<div class="container">
-  <input type="radio" name="Date">
-  <input type="radio" name="Date">
-  <input type="radio" name="Date">
-  <input type="radio" name="Date">
-</div>';
+					'<div class="feedback-container">
+						<span class="feedback-span">
+							<label>
+							<input type="radio" name="' . $radio_group . '" class="feedback-button">
+							1
+							</label>
+						</span>
+						
+						<span class="feedback-span">
+							<label>
+							<input type="radio" name="' . $radio_group . '" class="feedback-button">
+							2
+							</label>
+						</span>
+						
+						<span class="feedback-span">
+							<label>
+							<input type="radio" name="' . $radio_group . '" class="feedback-button">
+							3
+							</label>
+						</span>
+						
+						<span class="feedback-span">
+							<label>
+							<input type="radio" name="' . $radio_group . '" class="feedback-button">
+							4
+							</label>
+						</span>
+					</div>';
 
 				return HtmlGen::fieldset($title, $content);
 			}

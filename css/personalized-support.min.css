@@ -1,4 +1,12 @@
-.container {
+.feedback-container {
   display: flex;
   justify-content: space-between;
+}
+
+.feedback-span {
+  text-align:center;
+}
+
+.feedback-button {
+  display:block;
 }
