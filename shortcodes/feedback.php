@@ -97,8 +97,8 @@ function export_feedbacks_to_csv()
 	//{
 	$filename = "feedbacks_" . date('d-m-Y') . ".csv";
 
-	// header('Content-Type: text/csv; charset=utf-8');
-	// header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
+	header('Content-Type: text/csv; charset=utf-8');
+	header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
 
 	$f = fopen('php://output', 'w');
 
@@ -107,16 +107,16 @@ function export_feedbacks_to_csv()
 
 	foreach ($results as $row)
 	{
-		$line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
-		var_dump($line);
-		die();
+		// $line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
+		// var_dump($line);
+		// die();
 		// fputcsv($f, $line);
 	}
 
-	return $f;
+	// return $f;
 	// }
 
-	return '';
+	// return '';
 }
 
 
