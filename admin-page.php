@@ -48,7 +48,7 @@ function personalized_support_menu_output()
 			<button type="submit">Enregistrer les numéros</button>
 		</form>
 
-		<form action="<?php echo admin_url('admin-post.php'); ?>" method="POST">
+		<form action="<?php echo admin_url('admin-post.php'); ?>">
 			<div>Télécharger en format CSV tous les curseurs</div>
 			<input type="hidden" name="action" value="<?php echo Feedback::download_feedbacks; ?>">
 			<button type="submit">Télécharger</button>
