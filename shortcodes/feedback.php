@@ -153,10 +153,10 @@ function feedback_shortcode($atts, $content)
 					</datalist>
 					</div>';*/
 					'<div class="container">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
+  <input type="radio" name="Date">
+  <input type="radio" name="Date">
+  <input type="radio" name="Date">
+  <input type="radio" name="Date">
 </div>';
 
 				return HtmlGen::fieldset($title, $content);
