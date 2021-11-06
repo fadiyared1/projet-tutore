@@ -136,8 +136,10 @@ function feedback_shortcode($atts, $content)
 
 				$data_prefix = 'data-';
 
+				$radio_group = time();
+
 				$content =
-					'<div class="__range __range-step">
+					/*'<div class="__range __range-step">
 					<input value="0" type="range" max="4" min="1" step="1" list="range-list">
 					<datalist id="range-list" ' .
 					$data_prefix . Metadata::activite . "=\"{$activite}\" " .
@@ -149,6 +151,27 @@ function feedback_shortcode($atts, $content)
 						<option value="3">3</option>
 						<option value="4">4</option>
 					</datalist>
+					</div>';*/
+					'<div class="cntr">
+						<label class="radio">
+							<input type="radio" name="' . $radio_group . '" class="hidden"/>
+							<span class="label"></span>1
+						</label>
+						
+						<label class="radio">
+							<input type="radio" name="' . $radio_group . '" class="hidden"/>
+							<span class="label"></span>2
+						</label>
+						
+						<label class="radio">
+							<input type="radio" name="' . $radio_group . '" class="hidden"/>
+							<span class="label"></span>3
+						</label>
+						
+						<label class="radio">
+							<input type="radio" name="' . $radio_group . '" class="hidden"/>
+							<span class="label"></span>4
+						</label>
 					</div>';
 
 				return HtmlGen::fieldset($title, $content);
