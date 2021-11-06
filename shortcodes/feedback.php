@@ -88,39 +88,26 @@ function export_feedbacks_to_csv()
 	$table_name = Feedback::$table_name;
 
 	global $wpdb;
-	$results = $wpdb->get_results("SELECT * FROM {$table_name}");
-
-	// var_dump($results);
-	// die();
+	$results = $wpdb->get_results("SELECT * FROM {$table_name}", ARRAY_A);
 
 	if ($wpdb->num_rows > 0)
 	{
 		$filename = "feedbacks_" . date('d-m-Y') . ".csv";
 
-		// header('Content-Type: text/csv; charset=utf-8');
-		// header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
+		header('Content-Type: text/csv; charset=utf-8');
+		header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
 
-		// $f = fopen('php://output', 'w');
+		$f = fopen('php://output', 'w');
 
-		// $columns_heading = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
-		// fputcsv($f, $columns_heading);
+		$columns_heading = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
+		fputcsv($f, $columns_heading);
 
 		foreach ($results as $row)
 		{
-			// $line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
-			// $line = array($row['user_numero']);
-			var_dump(isset($row['user_numero']));
-			var_dump($row['user_numero']);
-			// var_dump($line);
-			// var_dump($row);
-			die();
-			// fputcsv($f, $line);
+			$line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
+			fputcsv($f, $line);
 		}
-
-		// return $f;
 	}
-
-	// return '';
 }
 
 
