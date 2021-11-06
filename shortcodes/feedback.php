@@ -117,7 +117,7 @@ function export_feedbacks_to_csv()
 	$filename = "feedbacks_" . date('d-m-Y') . ".csv";
 
 	header('Content-Type: text/csv; charset=utf-8');
-	header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
+	//header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
 
 	$f = fopen('php://output', 'w');
 
