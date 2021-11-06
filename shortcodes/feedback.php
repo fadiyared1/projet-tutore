@@ -88,7 +88,7 @@ function export_feedbacks_to_csv()
 	$table_name = Feedback::$table_name;
 
 	global $wpdb;
-	// $results = $wpdb->get_results("SELECT * FROM {$table_name}");
+	$results = $wpdb->get_results("SELECT * FROM {$table_name}");
 
 	//if ($wpdb->num_rows > 0)
 	//{
@@ -102,11 +102,11 @@ function export_feedbacks_to_csv()
 	$columns_heading = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
 	fputcsv($f, $columns_heading);
 
-	// foreach ($results as $row)
-	// {
-	// $line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
-	// fputcsv($f, $line);
-	// }
+	foreach ($results as $row)
+	{
+		$line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
+		fputcsv($f, $line);
+	}
 
 	return $f;
 	// }
