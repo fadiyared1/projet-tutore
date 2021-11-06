@@ -136,7 +136,7 @@ function feedback_shortcode($atts, $content)
 
 				$data_prefix = 'data-';
 
-				$radio_group = time();
+				$radio_group = microtime();
 
 				$content =
 					/*'<div class="__range __range-step">
@@ -152,27 +152,15 @@ function feedback_shortcode($atts, $content)
 						<option value="4">4</option>
 					</datalist>
 					</div>';*/
-					'<div class="cntr">
-						<label class="radio">
-							<input type="radio" name="' . $radio_group . '" class="hidden"/>
-							<span class="label"></span>1
-						</label>
-						
-						<label class="radio">
-							<input type="radio" name="' . $radio_group . '" class="hidden"/>
-							<span class="label"></span>2
-						</label>
-						
-						<label class="radio">
-							<input type="radio" name="' . $radio_group . '" class="hidden"/>
-							<span class="label"></span>3
-						</label>
-						
-						<label class="radio">
-							<input type="radio" name="' . $radio_group . '" class="hidden"/>
-							<span class="label"></span>4
-						</label>
-					</div>';
+					'<div class="buttons">
+<input id="date" type="date" name="Date">
+<button id="ShowAll">Show All</button>
+<button id=" showvalid">Show Valid</button>
+<button id=" showpending">Show Pending</button>
+<button id=" save">Save</button>
+<button id=" clear">Clear</button>
+<button id=" downloadascsv">Download As CSV</button>
+</div>';
 
 				return HtmlGen::fieldset($title, $content);
 			}
