@@ -90,6 +90,9 @@ function export_feedbacks_to_csv()
 	global $wpdb;
 	$results = $wpdb->get_results("SELECT * FROM {$table_name}");
 
+	var_dump($results);
+	die();
+
 	//if ($wpdb->num_rows > 0)
 	//{
 	$filename = "feedbacks_" . date('d-m-Y') . ".csv";
