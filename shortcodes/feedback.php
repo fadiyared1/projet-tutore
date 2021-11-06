@@ -180,6 +180,11 @@ function feedback_shortcode($atts, $content)
 							4
 							</label>
 						</span>
+					</div>
+					<div>
+						<span class="complete"> this is the 
+						complete text being shown</span>
+						<span class="more">Signification</span>
 					</div>';
 
 				return HtmlGen::fieldset($title, $content);
