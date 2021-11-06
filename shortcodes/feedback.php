@@ -85,7 +85,7 @@ class Feedback
 add_action('admin_post_' . Feedback::download_feedbacks, 'export_feedbacks_to_csv');
 function export_feedbacks_to_csv()
 {
-	/*$table_name = Feedback::$table_name;
+	$table_name = Feedback::$table_name;
 
 	global $wpdb;
 	$results = $wpdb->get_results("SELECT * FROM {$table_name}");
@@ -108,11 +108,8 @@ function export_feedbacks_to_csv()
 			$line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
 			fputcsv($f, $line);
 		}
+	}
 
-		die();
-	}*/
-
-	print_r($_POST);
 	die();
 }
 
