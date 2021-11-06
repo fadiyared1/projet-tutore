@@ -139,19 +139,6 @@ function feedback_shortcode($atts, $content)
 				$radio_group = microtime();
 
 				$content =
-					/*'<div class="__range __range-step">
-					<input value="0" type="range" max="4" min="1" step="1" list="range-list">
-					<datalist id="range-list" ' .
-					$data_prefix . Metadata::activite . "=\"{$activite}\" " .
-					$data_prefix . Metadata::cours . "=\"{$cours}\" " .
-					$data_prefix . Feedback::item . "=\"{$item}\"" .
-					'>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-					</datalist>
-					</div>';*/
 					'<div class="feedback-container" ' .
 					$data_prefix . Metadata::activite . "=\"{$activite}\" " .
 					$data_prefix . Metadata::cours . "=\"{$cours}\" " .
