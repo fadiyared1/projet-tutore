@@ -152,7 +152,11 @@ function feedback_shortcode($atts, $content)
 						<option value="4">4</option>
 					</datalist>
 					</div>';*/
-					'<div class="feedback-container">
+					'<div class="feedback-container" ' .
+					$data_prefix . Metadata::activite . "=\"{$activite}\" " .
+					$data_prefix . Metadata::cours . "=\"{$cours}\" " .
+					$data_prefix . Feedback::item . "=\"{$item}\"" .
+					'>
 						<span class="feedback-span">
 							<label>
 							<input type="radio" name="' . $radio_group . '" class="feedback-button">
@@ -182,9 +186,11 @@ function feedback_shortcode($atts, $content)
 						</span>
 					</div>
 					<div>
-						<span class="complete"> this is the 
-						complete text being shown</span>
-						<span class="more">Signification</span>
+						<span class="more">Cliquer pour plus de détails</span>
+
+						<span class="complete">
+							Explication 1 2 3 4
+						</span>
 					</div>';
 
 				return HtmlGen::fieldset($title, $content);
