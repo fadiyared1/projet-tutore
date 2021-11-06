@@ -107,7 +107,7 @@ function export_feedbacks_to_csv()
 
 	foreach ($results as $row)
 	{
-		// $line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
+		$line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
 		var_dump($line);
 		die();
 		// fputcsv($f, $row);
