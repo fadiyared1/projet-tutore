@@ -109,10 +109,8 @@ function export_feedbacks_to_csv()
 			fputcsv($f, $line);
 		}
 
-		fclose($f);
+		die();
 	}
-
-	return $f;
 }
 
 
