@@ -3,6 +3,7 @@
 class Feedback
 {
 	const item = "item";
+	const value = "value";
 
 	const ajax_send_feedback = 'ps_send_feedback';
 	const ajax_nonce_name = 'ps_ajax_nonce';
@@ -22,22 +23,42 @@ class Feedback
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
 		$table_name = Feedback::$table_name;
+
 		$activite = Metadata::activite;
 		$cours = Metadata::cours;
 		$item = Feedback::item;
+		$value = Feedback::value;
 
 		$create_feedbacks_table_sql =
 			"CREATE TABLE {$table_name}
 			(
-				id int(16) NOT NULL auto_increment primary key,
+				id varchar(256) NOT NULL primary key,
 				user_numero varchar(16) NOT NULL,
 				{$activite} varchar(16) NOT NULL,
 				{$cours} varchar(16) NOT NULL,
 				{$item} int(16) NOT NULL,
-				INDEX user_index(user_id)
+				{$value} int(16) NOT NULL,
+				INDEX user_index(user_numero)
 			)";
 
 		maybe_create_table($table_name, $create_feedbacks_table_sql);
+	}
+
+	static function set_feedback($user_numero, $activite, $cours, $item, $value)
+	{
+		global $wpdb;
+
+		$table_name = Feedback::$table_name;
+
+		$sql =
+			"INSERT INTO {$table_name}
+			(id, user_numero, activite, cours, item, value)
+			VALUES
+			(\"{$user_numero}-{$activite}-{$cours}-{$item}\",
+			\"{$user_numero}\",\"{$activite}\",\"{$cours}\",{$item},{$value})
+			ON DUPLICATE KEY UPDATE value={$value}";
+
+		return $wpdb->query($sql);
 	}
 
 	static function enqueue_ajax()
@@ -119,25 +140,40 @@ add_action('wp_ajax_nopriv_' . Feedback::ajax_send_feedback, 'handle_feedback_fr
 add_action('wp_ajax_' . Feedback::ajax_send_feedback, 'handle_feedback_from_user');
 function handle_feedback_from_user()
 {
-	$nonce = $_REQUEST['nonce'];
-
-	if (!wp_verify_nonce($nonce, Feedback::ajax_nonce_name))
+	if (!isset($_REQUEST['nonce']) || !wp_verify_nonce($_REQUEST['nonce'], Feedback::ajax_nonce_name))
 	{
 		die('Nonce value cannot be verified.');
 	}
 
-	// The $_REQUEST contains all the data sent via ajax
+	if (!PSUser::has_valid_numero())
+	{
+		die('User not logged.');
+	}
+
 	if (isset($_REQUEST) && isset($_REQUEST['dataset']))
 	{
 		$dataset = $_REQUEST['dataset'];
 
+		if (
+			empty($dataset[Metadata::activite]) ||
+			empty($dataset[Metadata::cours]) ||
+			empty($dataset[Feedback::item]) ||
+			empty($dataset[Feedback::value])
+		)
+		{
+			die('Missing metadata.');
+		}
+
+		$user_numero = PSUser::get_numero();
 		$activite = $dataset[Metadata::activite];
 		$cours = $dataset[Metadata::cours];
 		$item = $dataset[Feedback::item];
+		$value = $dataset[Feedback::value];
 
-		// Now we'll return it to the javascript function
-		// Anything outputted will be returned in the response
-		var_dump($_REQUEST);
+		Feedback::set_feedback($user_numero, $activite, $cours, $item, $value);
+
+		// Cela est retourné au client qui a fait la requête AJAX
+		echo "Success adding feedback : \"{$user_numero}\",\"{$activite}\",\"{$cours}\",{$item},{$value}";
 	}
 
 	// Always die in functions echoing ajax content
