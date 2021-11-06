@@ -94,6 +94,10 @@ function export_feedbacks_to_csv()
 	{
 		$filename = "feedbacks_" . date('d-m-Y') . ".csv";
 
+		// Set headers to download file rather than displayed
+		header('Content-Type: text/csv');
+		header('Content-Disposition: attachment; filename="' . $filename . '";');
+
 		$f = fopen("php://output", 'w');
 
 		$fields = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
@@ -105,9 +109,7 @@ function export_feedbacks_to_csv()
 			fputcsv($f, $line);
 		}
 
-		// Set headers to download file rather than displayed
-		header('Content-Type: text/csv');
-		header('Content-Disposition: attachment; filename="' . $filename . '";');
+
 
 		fclose($f);
 	}
