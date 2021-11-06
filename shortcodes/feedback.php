@@ -82,8 +82,7 @@ class Feedback
 	}
 }
 
-// add_action('admin_post_' . Feedback::download_feedbacks, 'export_feedbacks_to_csv');
-add_action('admin_post_ps_download_feedbacks', 'export_feedbacks_to_csv');
+add_action('admin_post_' . Feedback::download_feedbacks, 'export_feedbacks_to_csv');
 function export_feedbacks_to_csv()
 {
 	/*$table_name = Feedback::$table_name;
