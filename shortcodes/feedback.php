@@ -85,7 +85,7 @@ class Feedback
 add_action('admin_post_' . Feedback::download_feedbacks, 'export_feedbacks_to_csv');
 function export_feedbacks_to_csv()
 {
-	/*$table_name = Feedback::$table_name;
+	$table_name = Feedback::$table_name;
 
 	global $wpdb;
 	$results = $wpdb->get_results("SELECT * FROM {$table_name}");
@@ -94,37 +94,24 @@ function export_feedbacks_to_csv()
 	{
 		$filename = "feedbacks_" . date('d-m-Y') . ".csv";
 
-		// Set headers to download file rather than displayed
-		header('Content-Type: text/csv');
-		header('Content-Disposition: attachment; filename="' . $filename . '";');
+		header('Content-Type: text/csv; charset=utf-8');
+		header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
 
-		$f = fopen("php://output", 'w');
+		$f = fopen('php://output', 'w');
 
-		$fields = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
-		fputcsv($f, $fields);
+		$columns_heading = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
+		fputcsv($f, $columns_heading);
 
 		foreach ($results as $row)
 		{
 			$line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
 			fputcsv($f, $line);
 		}
+
+		return $f;
 	}
 
-	die();*/
-
-	global $wpdb;
-
-	$filename = "feedbacks_" . date('d-m-Y') . ".csv";
-
-	header('Content-Type: text/csv; charset=utf-8');
-	//header("Content-Disposition: attachment; filename=\"" . $filename . "\"");
-
-	$f = fopen('php://output', 'w');
-
-	$columns_heading = array('Numéro', 'Cours', 'Activité', 'Item', 'Valeur');
-	fputcsv($f, $columns_heading);
-
-	return $f;
+	return '';
 }
 
 
