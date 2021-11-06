@@ -153,13 +153,10 @@ function feedback_shortcode($atts, $content)
 					</datalist>
 					</div>';*/
 					'<div class="buttons">
-<input id="date" type="date" name="Date">
-<button id="ShowAll">Show All</button>
-<button id=" showvalid">Show Valid</button>
-<button id=" showpending">Show Pending</button>
-<button id=" save">Save</button>
-<button id=" clear">Clear</button>
-<button id=" downloadascsv">Download As CSV</button>
+<input type="radio" name="Date">
+<input type="radio" name="Date">
+<input type="radio" name="Date">
+<input type="radio" name="Date">
 </div>';
 
 				return HtmlGen::fieldset($title, $content);
