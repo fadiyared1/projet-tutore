@@ -1,16 +1,4 @@
-.buttons {
-  text-align:justify;
-}
-.buttons:after {
-  content:'';
-  display:inline-block;
-  width:99.5%;/* generates an extra transparent line */
-}
-/* makeup*/
-.buttons {
-  min-width:45em;
-  padding: 1.2em 1em 0;
-  box-shadow:0 0 5px;
-  margin:1em;
-  border-radius:0.25em;
+.container {
+  display: flex;
+  justify-content: space-between;
 }
