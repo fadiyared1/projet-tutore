@@ -110,7 +110,7 @@ function export_feedbacks_to_csv()
 		// $line = array($row['user_numero'], $row[Metadata::cours], $row[Metadata::activite], $row[Feedback::item], $row[Feedback::value]);
 		// var_dump($line);
 		// die();
-		// fputcsv($f, $line);
+		fputcsv($f, $row);
 	}
 
 	// return $f;
