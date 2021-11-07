@@ -176,7 +176,10 @@ function feedback_shortcode($atts, $content)
 						<span class="more">Cliquer pour plus de détails</span>
 
 						<span class="complete">
-							Explication 1 2 3 4
+							1 : Pas bien assimilé
+							2 : Réussite ou compréhension fragile
+							3 : Bien compris mais révision à prévoir
+							4 : Très bien compris
 						</span>
 					</div>';
 
