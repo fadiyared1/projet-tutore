@@ -177,9 +177,9 @@ function feedback_shortcode($atts, $content)
 
 						<span class="complete">
 							<div>1 : Pas bien assimilé</div>
-							2 : Réussite ou compréhension fragile<br>
-							3 : Bien compris mais révision à prévoir<br>
-							4 : Très bien compris<br>
+							<div>2 : Réussite ou compréhension fragile</div>
+							<div>3 : Bien compris mais révision à prévoir</div>
+							<div>4 : Très bien compris</div>
 						</span>
 					</div>';
 
