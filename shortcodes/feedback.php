@@ -145,6 +145,7 @@ function feedback_shortcode($atts, $content)
 					$data_prefix . Feedback::item . "=\"{$item}\"" .
 					'>
 						<span class="feedback-span">
+						<p>'. $value.'</p>
 							<label>
 							<input type="radio" name="' . $radio_group . '" class="feedback-button">
 							1
