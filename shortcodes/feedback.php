@@ -62,6 +62,21 @@ class Feedback
 
 		return $wpdb->query($sql);
 	}
+	function get_feedback($user_numero, $activite, $cours, $item)
+	{
+		global $wpdb;
+
+		$table_name = Feedback::$table_name;
+
+		$sql =
+			"SELECT value from  {$table_name}
+			WHERE (user_numero == $user_numero)
+			AND (activite == $activite)
+			AND (cours == $cours)
+			AND (item == $item)";
+
+		return $wpdb->query($sql);
+	}
 
 	static function enqueue_ajax()
 	{
@@ -116,6 +131,7 @@ function feedback_shortcode($atts, $content)
 {
 	if (PSUser::has_valid_numero())
 	{
+		$num = PSUser::get_numero();
 		if (Feedback::is_valid($atts))
 		{
 			$metadata_attributes = Metadata::get_current_attributes();
@@ -144,6 +160,7 @@ function feedback_shortcode($atts, $content)
 					$data_prefix . Metadata::cours . "=\"{$cours}\" " .
 					$data_prefix . Feedback::item . "=\"{$item}\"" .
 					'>
+					
 						<span class="feedback-span">
 							<label>
 							<input type="radio" name="' . $radio_group . '" class="feedback-button">
@@ -171,6 +188,7 @@ function feedback_shortcode($atts, $content)
 							4
 							</label>
 						</span>
+						
 					</div>
 					<div>
 						<span class="more">Cliquer pour plus de détails</span>
@@ -180,6 +198,7 @@ function feedback_shortcode($atts, $content)
 							<div>2 : Réussite ou compréhension fragile</div>
 							<div>3 : Bien compris mais révision à prévoir</div>
 							<div>4 : Très bien compris</div>
+							<div>5 : HIIIII</div>
 						</span>
 					</div>';
 
